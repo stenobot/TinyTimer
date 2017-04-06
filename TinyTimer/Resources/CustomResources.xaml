@@ -1,0 +1,50 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TinyTimer.Resources">
+
+    <ResourceDictionary.ThemeDictionaries>
+
+        <!-- BRUSHES -->
+
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="TinyTimerAccentColorBrush"
+                             Color="{ThemeResource SystemAccentColor}" />
+            <SolidColorBrush x:Key="TinyTimerAccentColorLightBrush"
+                             Color="{ThemeResource SystemAccentColor}" 
+                             Opacity=".3" />
+            <SolidColorBrush x:Key="TinyTimerBackgroundBrush"
+                             Color="#FF161616" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="TinyTimerAccentColorBrush"
+                             Color="{ThemeResource SystemAccentColor}" />
+            <SolidColorBrush x:Key="TinyTimerAccentColorLightBrush"
+                             Color="{ThemeResource SystemAccentColor}" 
+                             Opacity=".3" />
+            <SolidColorBrush x:Key="TinyTimerBackgroundBrush"
+                             Color="#FF161616" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="TinyTimerAccentColorBrush"
+                             Color="{ThemeResource SystemAccentColor}" />
+            <SolidColorBrush x:Key="TinyTimerAccentColorLightBrush"
+                             Color="{ThemeResource SystemAccentColor}" 
+                             Opacity=".3" />
+            <SolidColorBrush x:Key="TinyTimerBackgroundBrush"
+                             Color="#FF161616" />
+        </ResourceDictionary>
+
+    </ResourceDictionary.ThemeDictionaries>
+
+    <FontFamily x:Key="ZeldaFont">/Assets/Fonts/ZeldaDXTTBRK.ttf#Zelda DX TT BRK</FontFamily>
+    <FontFamily x:Key="VerminFont">/Assets/Fonts/vermin_vibes_1989.ttf#Vermin Vibes 1989</FontFamily>
+    <FontFamily x:Key="SilkscreenFont">/Assets/Fonts/slkscr.ttf#Silkscreen</FontFamily>
+    <FontFamily x:Key="DigiffitiFont">/Assets/Fonts/digiffiti.ttf#Digiffiti</FontFamily>
+
+
+
+
+</ResourceDictionary>

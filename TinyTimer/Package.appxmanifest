@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="11230Stenobot.TinyTimer" Publisher="CN=DE5F30FF-3EE0-4203-B453-CB61BAA6053D" Version="1.1.2.0" />
+  <mp:PhoneIdentity PhoneProductId="91098d6a-8b59-4ccb-be2e-dfc0fb43582e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>Tiny Timer</DisplayName>
+    <PublisherDisplayName>Stenobot</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TinyTimer.App">
+      <uap:VisualElements DisplayName="Tiny Timer" Square150x150Logo="Assets\square150x150.png" Square44x44Logo="Assets\square44x44.png" Description="Tiny Timer is a countdown timer that is fun, flexible, and of course, tiny! Choose from different sound and visual settings, which Tiny Timer will remember the next time you open it. Tap the timer screen to switch between different countdown modes. Set your color to random to be surprised each time you start the timer." BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\wide310x150.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\splash.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+</Package>

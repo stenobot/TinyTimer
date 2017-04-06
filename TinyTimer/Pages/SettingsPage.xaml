@@ -1,0 +1,174 @@
+﻿<Page
+    x:Class="TinyTimer.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TinyTimer.Pages"
+    xmlns:controls="using:TinyTimer.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid Background="{ThemeResource TinyTimerBackgroundBrush}">
+
+        <Grid x:Name="timerBackgroundGrid" 
+              Opacity="0.4" />
+        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+
+            <StackPanel HorizontalAlignment="Center"
+                        MinWidth="175"
+                        VerticalAlignment="Center">
+
+                <ComboBox x:Name="backgroundModeComboBox" 
+                          HorizontalAlignment="Left" 
+                          MinWidth="120" 
+                          Margin="0,8,0,0"
+                          SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBox.Header>
+                        <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
+                                   Text="Animation:" Margin="0"
+                                   FontSize="13" />
+                    </ComboBox.Header>
+                    <ComboBox.Items>
+                        <ComboBoxItem>
+                            <TextBlock Text="Squares" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Circle" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Lines" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <ComboBox x:Name="colorModeComboBox" 
+                          HorizontalAlignment="Left" 
+                          MinWidth="120" 
+                          Margin="0,11,0,0"
+                          SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBox.Header>
+                        <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
+                                   Text="Color:" 
+                                   FontSize="13" />
+                    </ComboBox.Header>
+                    <ComboBox.Items>
+                        <ComboBoxItem>
+                            <TextBlock Text="System color" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Random" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
+
+                <ComboBox x:Name="soundModeComboBox" 
+                          HorizontalAlignment="Left" 
+                          MinWidth="120" 
+                          Margin="0,11,0,0"
+                          SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBox.Header>
+                        <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
+                                   Text="Sounds:" 
+                                   FontSize="13" />
+                    </ComboBox.Header>
+                    <ComboBox.Items>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 1" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 2" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 3" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 4" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 5" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 6" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Sound 7" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
+
+
+                <CheckBox x:Name="showSecondsCheckBox" 
+                          Checked="ShowSecondsCheckBox_Checked"
+                          Unchecked="ShowSecondsCheckBox_Checked"
+                          Margin="0,6,0,0">
+                    <CheckBox.Content>
+                        <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
+                               Text="Show seconds" 
+                               FontSize="13" 
+                               Margin="0,4,0,0" />
+                    </CheckBox.Content>
+                </CheckBox>
+
+                <TextBlock FontFamily="{StaticResource SilkscreenFont}"                               
+                           FontSize="12" Margin="0,11,0,5"
+                           Text="Tiny Timer (C)" />
+                <TextBlock FontFamily="{StaticResource SilkscreenFont}"                               
+                           FontSize="12" 
+                           Margin="0,0,0,11"
+                           Text="An app by Stenobot." />
+
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+    </Grid>
+</Page>

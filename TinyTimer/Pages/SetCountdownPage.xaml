@@ -1,0 +1,112 @@
+﻿<Page
+    x:Class="TinyTimer.Pages.SetCountdownPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TinyTimer.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Page.Resources>
+        <Storyboard x:Name="FadeInPageContent">
+            <DoubleAnimation From="0" To="1" 
+                             Duration="0:0:.7" 
+                             BeginTime="0:0:0.0"
+                             Storyboard.TargetName="contentStackPanel"
+                             Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource TinyTimerBackgroundBrush}">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Large">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="400" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="nextPreviousCountdownButton.FontSize" Value="32" />
+                        <Setter Target="previousCountdownButton.FontSize" Value="32" />
+                        <Setter Target="customCountdownButton.FontSize" Value="22" />
+                        <Setter Target="settingsButton.FontSize" Value="22" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <StackPanel x:Name="contentStackPanel" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" 
+                    Opacity="0">
+            <Button x:Name="nextPreviousCountdownButton" 
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource SilkscreenFont}" 
+                    FontSize="32"
+                    Foreground="{ThemeResource SystemAccentColor}" 
+                    Background="Transparent" 
+                    Click="PreviousCountdownButton_Click" />
+            
+            <Button x:Name="previousCountdownButton" 
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource SilkscreenFont}" 
+                    FontSize="32"
+                    Foreground="{ThemeResource SystemAccentColor}" 
+                    Background="Transparent" 
+                    Click="PreviousCountdownButton_Click" />
+
+            <Button x:Name="customCountdownButton"
+                    Margin="0,10,0,0"                    
+                    HorizontalAlignment="Center"           
+                    Background="Transparent"
+                    Click="CustomCountdownButton_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <BitmapIcon UriSource="/Assets/time-icon.png" 
+                                    Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                                    Margin="0,0,6,0"
+                                    Height="19"  />
+                        <TextBlock Text="Custom time"
+                                   Margin="0,3,0,0"
+                                   FontFamily="{StaticResource SilkscreenFont}" 
+                                   Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                                   FontSize="16"  />
+                    </StackPanel>
+                    
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="settingsButton"
+                    HorizontalAlignment="Center"
+                    FontFamily="{StaticResource SilkscreenFont}" 
+                    FontSize="16"
+                    Background="Transparent"
+                    Click="SettingsButton_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <BitmapIcon UriSource="/Assets/settings-icon.png" 
+                                    Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                                    Margin="0,0,6,0"
+                                    Height="19"  />
+                        <TextBlock Text="Settings"
+                                   Margin="0,3,0,0"
+                                   FontFamily="{StaticResource SilkscreenFont}" 
+                                   Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                                   FontSize="16"  />
+                    </StackPanel>
+
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

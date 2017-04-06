@@ -1,0 +1,388 @@
+﻿<UserControl
+    x:Class="TinyTimer.Controls.TimerBackground"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TinyTimer.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <Storyboard x:Name="FadeInAnimation">
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             Storyboard.TargetName="twentyfive"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.05"
+                             Storyboard.TargetName="twentyfour"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.1"
+                             Storyboard.TargetName="twentythree"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.15"
+                             Storyboard.TargetName="twentytwo"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.2"
+                             Storyboard.TargetName="twentyone"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.25"
+                             Storyboard.TargetName="twenty"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.3"
+                             Storyboard.TargetName="nineteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.35"
+                             Storyboard.TargetName="eighteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.4"
+                             Storyboard.TargetName="seventeen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.45"
+                             Storyboard.TargetName="sixteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.5"
+                             Storyboard.TargetName="fifteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.55"
+                             Storyboard.TargetName="fourteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.6"
+                             Storyboard.TargetName="thirteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.65"
+                             Storyboard.TargetName="twelve"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.7"
+                             Storyboard.TargetName="eleven"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.75"
+                             Storyboard.TargetName="ten"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.8"
+                             Storyboard.TargetName="nine"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.85"
+                             Storyboard.TargetName="eight"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.9"
+                             Storyboard.TargetName="seven"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.95"
+                             Storyboard.TargetName="six"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:1"
+                             Storyboard.TargetName="five"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:1.05"
+                             Storyboard.TargetName="four"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:1.1"
+                             Storyboard.TargetName="three"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:1.15"
+                             Storyboard.TargetName="two"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:1.2"
+                             Storyboard.TargetName="one"
+                             Storyboard.TargetProperty="Opacity" />
+
+
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             Storyboard.TargetName="lineTwenty"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.05"
+                             Storyboard.TargetName="lineNineteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.1"
+                             Storyboard.TargetName="lineEighteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.15"
+                             Storyboard.TargetName="lineSeventeen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.2"
+                             Storyboard.TargetName="lineSixteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.25"
+                             Storyboard.TargetName="lineFifteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.3"
+                             Storyboard.TargetName="lineFourteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.35"
+                             Storyboard.TargetName="lineThirteen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.4"
+                             Storyboard.TargetName="lineTwelve"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.45"
+                             Storyboard.TargetName="lineEleven"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.5"
+                             Storyboard.TargetName="lineTen"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.55"
+                             Storyboard.TargetName="lineNine"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.6"
+                             Storyboard.TargetName="lineEight"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.65"
+                             Storyboard.TargetName="lineSeven"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.7"
+                             Storyboard.TargetName="lineSix"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.75"
+                             Storyboard.TargetName="lineFive"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.8"
+                             Storyboard.TargetName="lineFour"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.85"
+                             Storyboard.TargetName="lineThree"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.9"
+                             Storyboard.TargetName="lineTwo"
+                             Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation From="1" To="0" 
+                             Duration="0:0:0.4" 
+                             BeginTime="0:0:0.95"
+                             Storyboard.TargetName="lineOne"
+                             Storyboard.TargetProperty="Opacity" />
+
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="BackgroundModeStates">
+                <VisualState x:Name="SquaresMode">
+                    <VisualState.Setters>
+                        <Setter Target="squaresAnimationGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="circlesAnimationGrid.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="linesAnimationGrid.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="CirclesMode">
+                    <VisualState.Setters>
+                        <Setter Target="squaresAnimationGrid.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="circlesAnimationGrid.Visibility"
+                                Value="Visible" />
+                        <Setter Target="linesAnimationGrid.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="LinesMode">
+                    <VisualState.Setters>
+                        <Setter Target="squaresAnimationGrid.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="circlesAnimationGrid.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="linesAnimationGrid.Visibility"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid x:Name="squaresAnimationGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid x:Name="twentyone" Background="{ThemeResource SystemAccentColor}" />
+            <Grid x:Name="twentytwo" Background="{ThemeResource SystemAccentColor}" Grid.Column="1" />
+            <Grid x:Name="twentythree" Background="{ThemeResource SystemAccentColor}" Grid.Column="2" />
+            <Grid x:Name="twentyfour" Background="{ThemeResource SystemAccentColor}" Grid.Column="3" />
+            <Grid x:Name="twentyfive" Background="{ThemeResource SystemAccentColor}" Grid.Column="4" />
+            <Grid x:Name="sixteen" Background="{ThemeResource SystemAccentColor}" Grid.Row="1" />
+            <Grid x:Name="seventeen" Background="{ThemeResource SystemAccentColor}" Grid.Row="1" Grid.Column="1" />
+            <Grid x:Name="eighteen" Background="{ThemeResource SystemAccentColor}" Grid.Row="1" Grid.Column="2" />
+            <Grid x:Name="nineteen" Background="{ThemeResource SystemAccentColor}" Grid.Row="1" Grid.Column="3" />
+            <Grid x:Name="twenty" Background="{ThemeResource SystemAccentColor}" Grid.Row="1" Grid.Column="4" />
+            <Grid x:Name="eleven" Background="{ThemeResource SystemAccentColor}" Grid.Row="2" />
+            <Grid x:Name="twelve" Background="{ThemeResource SystemAccentColor}" Grid.Row="2" Grid.Column="1" />
+            <Grid x:Name="thirteen" Background="{ThemeResource SystemAccentColor}" Grid.Row="2" Grid.Column="2" />
+            <Grid x:Name="fourteen" Background="{ThemeResource SystemAccentColor}" Grid.Row="2" Grid.Column="3" />
+            <Grid x:Name="fifteen" Background="{ThemeResource SystemAccentColor}" Grid.Row="2" Grid.Column="4" />
+            <Grid x:Name="six" Background="{ThemeResource SystemAccentColor}" Grid.Row="3" />
+            <Grid x:Name="seven" Background="{ThemeResource SystemAccentColor}" Grid.Row="3" Grid.Column="1" />
+            <Grid x:Name="eight" Background="{ThemeResource SystemAccentColor}" Grid.Row="3" Grid.Column="2" />
+            <Grid x:Name="nine" Background="{ThemeResource SystemAccentColor}" Grid.Row="3" Grid.Column="3" />
+            <Grid x:Name="ten" Background="{ThemeResource SystemAccentColor}" Grid.Row="3" Grid.Column="4" />
+            <Grid x:Name="one" Background="{ThemeResource SystemAccentColor}" Grid.Row="4" />
+            <Grid x:Name="two" Background="{ThemeResource SystemAccentColor}" Grid.Row="4" Grid.Column="1" />
+            <Grid x:Name="three" Background="{ThemeResource SystemAccentColor}" Grid.Row="4" Grid.Column="2" />
+            <Grid x:Name="four" Background="{ThemeResource SystemAccentColor}" Grid.Row="4" Grid.Column="3" />
+            <Grid x:Name="five" Background="{ThemeResource SystemAccentColor}" Grid.Row="4" Grid.Column="4" />
+        </Grid>
+
+        <Grid x:Name="circlesAnimationGrid">
+
+            <Ellipse x:Name="ellipse" Fill="{ThemeResource TinyTimerAccentColorBrush}" Width="200" Height="200">
+                <interactivity:Interaction.Behaviors>
+
+                    <behaviors:Scale x:Name="ScaleEllipse"
+                                     CenterX="100"
+                                     CenterY="100"
+                                     ScaleX="0.0"
+                                     ScaleY="0.0"
+                                     Duration="900" 
+                                     Delay="0"
+                                     AutomaticallyStart="True" />
+
+                </interactivity:Interaction.Behaviors>
+            </Ellipse>
+        </Grid>
+
+        <Grid x:Name="linesAnimationGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="lineTwenty" Margin="0,0,1,0" Height="9" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineNineteen" Margin="0,0,1,0" Height="9" Grid.Row="1" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineEighteen" Margin="0,0,1,0" Height="9" Grid.Row="2" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineSeventeen" Margin="0,0,1,0" Height="9" Grid.Row="3" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineSixteen" Margin="0,0,1,0" Height="9" Grid.Row="4" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineFifteen" Margin="0,0,1,0" Height="9" Grid.Row="5" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineFourteen" Margin="0,0,1,0" Height="9" Grid.Row="6" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineThirteen" Margin="0,0,1,0" Height="9" Grid.Row="7" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineTwelve" Margin="0,0,1,0" Height="9" Grid.Row="8" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineEleven" Margin="0,0,1,0" Height="9" Grid.Row="9" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineTen" Margin="0,0,1,0" Height="9" Grid.Row="10" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineNine" Margin="0,0,1,0" Height="9" Grid.Row="11" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineEight" Margin="0,0,1,0" Height="9" Grid.Row="12" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineSeven" Margin="0,0,1,0" Height="9" Grid.Row="13" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineSix" Margin="0,0,1,0" Height="9" Grid.Row="14" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineFive" Margin="0,0,1,0" Height="9" Grid.Row="15" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineFour" Margin="0,0,1,0" Height="9" Grid.Row="16" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineThree" Margin="0,0,1,0" Height="9" Grid.Row="17" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineTwo" Margin="0,0,1,0" Height="9" Grid.Row="18" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+            <Grid x:Name="lineOne" Margin="0,0,1,0" Height="9" Grid.Row="19" Background="{ThemeResource TinyTimerAccentColorBrush}" />
+
+        </Grid>
+
+    </Grid>
+</UserControl>
