@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using System.Diagnostics;
 using TinyTimer.DataModel;
 using System.Threading.Tasks;
-using Microsoft.Toolkit.Uwp;
 using Windows.UI.Core;
 using Windows.Storage;
 
@@ -364,7 +354,7 @@ namespace TinyTimer.Pages
             ScaleBkgRect.ScaleY = 0.1;
             RotateBkgRect.Value -= 400;
             await Task.Delay(500);
-            Frame.Navigate(typeof(SetCountdownPage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+            Frame.Navigate(typeof(StartPage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
 
         //public override void PageVisibilityChanged(object sender, VisibilityChangedEventArgs e)

@@ -60,6 +60,9 @@ namespace TinyTimer
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
+            // initialize settings class
+            Settings.Current.Init();
+
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -85,7 +88,7 @@ namespace TinyTimer
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(SetCountdownPage), e.Arguments);
+                    rootFrame.Navigate(typeof(StartPage), e.Arguments);
                 }
 
                 // register global back event handler

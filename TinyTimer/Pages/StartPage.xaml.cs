@@ -1,39 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using TinyTimer.DataModel;
-using System.Threading.Tasks;
-using System.Runtime.Serialization.Json;
 using Windows.Storage;
 using Windows.UI.Core;
-
+using Windows.Services.Store;
 
 namespace TinyTimer.Pages
 {
-    public sealed partial class SetCountdownPage : Page
+    public sealed partial class StartPage : Page
     {
+        private StoreContext context;
+        private StoreAppLicense appLicense;
+        private bool isTrial;
+
         private int[] previousTimeVals;
         private UserTimes userTimes;
 
-        public SetCountdownPage()
+        public StartPage()
         {
             this.InitializeComponent();
 
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 
-            // initialize settings class
-            Settings.Current.Init();
+            InitializeLicense();
 
             // initialize user times plus 4 deep int array for saved time data
             userTimes = new UserTimes();
@@ -43,6 +34,36 @@ namespace TinyTimer.Pages
 
             PopulatePreviousButtons();
             FadeInPageContent.Begin();
+        }
+
+
+        private async void InitializeLicense()
+        {
+            if (context == null)
+                context = StoreContext.GetDefault();
+
+            appLicense = await context.GetAppLicenseAsync();
+
+            
+            // register changed event, in case license change during app session
+            context.OfflineLicensesChanged += Context_OfflineLicensesChanged;
+
+            CheckLicense(appLicense);
+        }
+
+        private async void Context_OfflineLicensesChanged(StoreContext sender, object args)
+        {
+            appLicense = await context.GetAppLicenseAsync();
+            CheckLicense(appLicense);         
+        }
+
+        private void CheckLicense(StoreAppLicense license)
+        {
+            if (license.IsActive && license.IsTrial)
+            {
+                isTrial = true;
+                VisualStateManager.GoToState(this, "TrialState", true);             
+            }
         }
 
         private void PopulatePreviousButtons()
@@ -122,7 +143,10 @@ namespace TinyTimer.Pages
 
         private void CustomCountdownButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SetCustomCountdownPage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+            if (isTrial)
+                Frame.Navigate(typeof(TrialMessagePage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+            else
+                Frame.Navigate(typeof(SetCustomCountdownPage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)

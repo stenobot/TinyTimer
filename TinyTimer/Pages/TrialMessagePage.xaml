@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="TinyTimer.Pages.TrialMessagePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TinyTimer.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource TinyTimerBackgroundBrush}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Margin="20"
+                       Text="Thank you for checking out Tiny Timer! This is a trial version."/>
+            
+            <HyperlinkButton HorizontalAlignment="Center"
+                             NavigateUri="https://www.microsoft.com/store/apps/9pf6zlps6x8p"
+                             Grid.Row="1"
+                             Background="Transparent">
+                <TextBlock Text="Buy Full Version"
+                           Margin="0,3,0,0"
+                           FontFamily="{StaticResource SilkscreenFont}" 
+                           Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                           FontSize="16"  />
+            </HyperlinkButton>
+
+            <Button Click="Continue_Button_Click"
+                    HorizontalAlignment="Center"
+                    Grid.Row="2"
+                    Background="Transparent">
+                <TextBlock Text="Continue"
+                           Margin="0,3,0,0"
+                           FontFamily="{StaticResource SilkscreenFont}" 
+                           Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                           FontSize="16" />
+            </Button>
+        </Grid>
+
+    </Grid>
+</Page>
