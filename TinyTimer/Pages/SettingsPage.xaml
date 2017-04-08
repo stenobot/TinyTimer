@@ -100,6 +100,12 @@
                     </ComboBox.Header>
                     <ComboBox.Items>
                         <ComboBoxItem>
+                            <TextBlock Text="No sound" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
                             <TextBlock Text="Sound 1" 
                                        FontSize="13" 
                                        FontFamily="{StaticResource SilkscreenFont}"

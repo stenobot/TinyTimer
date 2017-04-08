@@ -130,7 +130,7 @@ namespace TinyTimer.DataModel
             else
             {
                 SoundModeIndex = 3;
-                ApplicationData.Current.LocalSettings.Values["soundMode"] = 3;
+                ApplicationData.Current.LocalSettings.Values["soundMode"] = 4;
             }
         }
     }

@@ -3,6 +3,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:TinyTimer.Pages"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -44,6 +47,62 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+
+        <Grid x:Name="titleGrid" Opacity="0.5">
+
+            <TextBlock Text="Tiny" 
+                       FontFamily="{StaticResource VerminFont}" 
+                       Foreground="{ThemeResource SystemAccentColor}"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Top"
+                       Margin="0,40"
+                       FontSize="110">
+                
+             <interactivity:Interaction.Behaviors>
+                <behaviors:Offset x:Name="OffsetTitleOne" 
+                                  OffsetX="0"
+                                  OffsetY="-30"
+                                  Duration="6000" 
+                                  AutomaticallyStart="True" />
+            </interactivity:Interaction.Behaviors>
+
+                </TextBlock>
+
+                <TextBlock Text="Timer" 
+                       FontFamily="{StaticResource VerminFont}" 
+                       Foreground="{ThemeResource SystemAccentColor}"
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom"
+                       Margin="0,40"
+                       FontSize="90">
+                
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Offset x:Name="OffsetTitleTwo" 
+                                  OffsetX="0"
+                                  OffsetY="150"
+                                  Duration="6000" 
+                                  AutomaticallyStart="True" />
+            </interactivity:Interaction.Behaviors>
+
+                </TextBlock>
+
+                <interactivity:Interaction.Behaviors>
+                    <behaviors:Scale x:Name="ScaleTitle"
+                                 CenterX="100"
+                                 CenterY="50"
+                                 ScaleX="0.5"
+                                 ScaleY="0.5"
+                                 Duration="6000" 
+                                 AutomaticallyStart="True" />
+                    <behaviors:Fade x:Name="FadeTitle"
+                                 Duration="4000"
+                                 Value="0"
+                                 AutomaticallyStart="True" />
+
+                </interactivity:Interaction.Behaviors>
+
+
+        </Grid>
         
         <StackPanel x:Name="contentStackPanel" 
                     HorizontalAlignment="Center" 

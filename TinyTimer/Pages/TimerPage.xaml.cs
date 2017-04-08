@@ -36,6 +36,9 @@ namespace TinyTimer.Pages
         private int outroLoopCount;
         private double percentageInterval;
 
+        private DateTime currTime;
+        private DateTime prevTime;
+
         private TimerModeEnums timerMode;
         
       //  private int clockMode;
@@ -47,7 +50,9 @@ namespace TinyTimer.Pages
         public TimerPage()
         {
             this.InitializeComponent();
+
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+
 
             TrySetTimerModeFromSave();
 
@@ -61,6 +66,7 @@ namespace TinyTimer.Pages
             // load event for changing timer mode
             mainTimerGrid.Tapped += MainTimerGrid_Tapped;
         }
+
 
         private void SetRandomColor()
         {
@@ -86,7 +92,7 @@ namespace TinyTimer.Pages
             else
             {
                 // set timer mode default value and save as an int value
-                timerMode = TimerModeEnums.MinutesOnly;
+                timerMode = TimerModeEnums.MinutesAndSeconds;
                 ApplicationData.Current.LocalSettings.Values["timerMode"] = timerMode.GetHashCode();
             }
         }
@@ -114,10 +120,19 @@ namespace TinyTimer.Pages
             else if (timerMode == TimerModeEnums.SecondsOnly)
                 clockTwoSecondText.Opacity = 1;
 
+            // get the timer ready
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
+
+            // time stamps to keep our pseudo clock honest
+            currTime = DateTime.Now; 
+ 
+
+            // start the timer
             timer.Start();
+
+            // set clock strings to starting values
             clockMinuteText.Text = ((time.Minutes < 10) ? "0" : "") + time.Minutes.ToString();
             clockSecondText.Text = ((time.Seconds < 10) ? "0" : "") + time.Seconds.ToString();
             clockTwoMinuteText.Text = time.Minutes.ToString();
@@ -126,6 +141,11 @@ namespace TinyTimer.Pages
 
         private void Timer_Tick(object sender, object e)
         {
+            prevTime = currTime;
+            currTime = DateTime.Now;
+
+            int extraTicks = 0;
+
             if (timerFinished)
             {
                 if (!outroSmall)
@@ -162,7 +182,8 @@ namespace TinyTimer.Pages
 
                 if (introCount < 3)
                 {
-                    soundPlayer.PlaySound(Settings.Current.SoundModeIndex * 2);
+                    if (Settings.Current.SoundModeIndex > 0)
+                        soundPlayer.PlaySound((Settings.Current.SoundModeIndex - 1) * 2);
 
                     RotateBkgRect.Value += 90;
                     ScaleBkgRect.ScaleX += 0.15;
@@ -180,7 +201,8 @@ namespace TinyTimer.Pages
                 }
                 else
                 {
-                    soundPlayer.PlaySound((Settings.Current.SoundModeIndex * 2) + 1);
+                    if (Settings.Current.SoundModeIndex > 0)
+                        soundPlayer.PlaySound(((Settings.Current.SoundModeIndex - 1) * 2) + 1);
 
                     FadeOutBkgRectAnimation.Begin();
                     RotateBkgRect.Value += 150;
@@ -195,9 +217,39 @@ namespace TinyTimer.Pages
                 }
             }
 
-            if (countdownCurrTime.Seconds == 0)
+            // in order to keep the clock honest, we check that the current tick time and
+            // previous tick time are less than 2 seconds apart
+            // this is important in case the app gets minimized,
+            // which sometimes causes the tick code to not run
+            if ((currTime - prevTime) > TimeSpan.FromSeconds(2))
             {
-                if (countdownCurrTime.Minutes == 0)
+                TimeSpan diffTime = currTime - prevTime;
+
+                double diffTotalSeconds = Math.Floor(diffTime.TotalSeconds);
+
+                // keep track of extra needed ticks
+                // we'll need these to catch up the background animation
+                extraTicks = (int)diffTotalSeconds;
+
+                // if we haven't passed a minute mark, simply decrement the seconds wiht the diff time
+                if (diffTotalSeconds <= countdownCurrTime.Seconds)
+                {
+                    countdownCurrTime.Seconds -= diffTime.Seconds;
+                }
+                else
+                {
+                    // otherwise, do some math to figure out how many minutes and seconds to decrement
+                    int diffMinutes = ((int)Math.Floor((diffTotalSeconds - countdownCurrTime.Seconds) / 60) + 1);
+                    int diffSeconds = ((int)diffTotalSeconds - countdownCurrTime.Seconds - (60 * (diffMinutes - 1)));
+
+                    countdownCurrTime.Minutes -= diffMinutes;
+                    countdownCurrTime.Seconds = 60 - diffSeconds;
+                }
+            }
+
+            if (countdownCurrTime.Seconds <= 0)
+            {
+                if (countdownCurrTime.Minutes <= 0)
                 {
                     EndTimer();
                     return;
@@ -210,8 +262,24 @@ namespace TinyTimer.Pages
                 countdownCurrTime.Seconds--;
             }
 
-            // increment the elapsed time percentage with the interval
-            timeBackground.TimeElapsedPercentage += percentageInterval;
+            // increment the elapsed time percentage to update the background animation
+            if (extraTicks > 0)
+            {
+                // something got off, so we need to account for the lost time
+                // by artificially adding extra ticks
+                for (int i = 0; i < extraTicks; i++)
+                {
+                    timeBackground.TimeElapsedPercentage += percentageInterval;
+                }
+
+                // reset our extra ticks variable
+                extraTicks = 0;
+            }
+            else
+            {
+                // just a normal tick
+                timeBackground.TimeElapsedPercentage += percentageInterval;
+            }
 
             clockMinuteText.Text = ((countdownCurrTime.Minutes < 10) ? "0" : "") + countdownCurrTime.Minutes.ToString();
             clockSecondText.Text = ((countdownCurrTime.Seconds < 10) ? "0" : "") + countdownCurrTime.Seconds.ToString();
@@ -298,5 +366,18 @@ namespace TinyTimer.Pages
             await Task.Delay(500);
             Frame.Navigate(typeof(SetCountdownPage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
+
+        //public override void PageVisibilityChanged(object sender, VisibilityChangedEventArgs e)
+        //{
+        //    if (!e.Visible)
+        //    {
+        //        // when app window is minimized and a video is playing, pause the player
+           
+        //    }
+        //    else
+        //    {
+         
+        //    }
+        //}
     }
 }

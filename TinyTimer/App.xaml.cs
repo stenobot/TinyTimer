@@ -17,7 +17,9 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
 using TinyTimer.Pages;
 using Windows.UI.Core;
-
+using Windows.ApplicationModel.Background;
+using System.Threading.Tasks;
+using TinyTimer.DataModel;
 
 namespace TinyTimer
 {
@@ -91,7 +93,7 @@ namespace TinyTimer
 
                 // Ensure the current window is active
                 Window.Current.Activate();
-            }
+            }            
 
             ApplicationViewTitleBar titleBar = ApplicationView.GetForCurrentView().TitleBar;
 
@@ -117,6 +119,7 @@ namespace TinyTimer
             // set the frame background to match our titlebar
             rootFrame.Background = bkgColor;
         }
+
 
         /// <summary>
         /// Invoked when a user issues a global back on the device.

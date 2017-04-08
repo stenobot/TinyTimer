@@ -109,7 +109,7 @@ namespace TinyTimer.Pages
             {
                 Settings.Current.SoundModeIndex = box.SelectedIndex;
                 Settings.Current.SaveSoundMode();
-                PlayCurrentSound(box.SelectedIndex * 2);
+                PlayCurrentSound(box.SelectedIndex);
             }
         }
 
@@ -130,10 +130,10 @@ namespace TinyTimer.Pages
 
         private void PlayCurrentSound(int index)
         {
-            if (soundPlayer == null)
+            if (soundPlayer == null || index == 0)
                 return;
 
-            soundPlayer.PlaySound(index);
+            soundPlayer.PlaySound((index - 1) * 2);
         }
     }
 }
