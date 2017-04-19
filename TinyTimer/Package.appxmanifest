@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="11230Stenobot.TinyTimer" Publisher="CN=DE5F30FF-3EE0-4203-B453-CB61BAA6053D" Version="1.1.5.0" />
+  <Identity Name="11230Stenobot.TinyTimer" Publisher="CN=DE5F30FF-3EE0-4203-B453-CB61BAA6053D" Version="1.1.6.0" />
   <mp:PhoneIdentity PhoneProductId="91098d6a-8b59-4ccb-be2e-dfc0fb43582e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Tiny Timer</DisplayName>
