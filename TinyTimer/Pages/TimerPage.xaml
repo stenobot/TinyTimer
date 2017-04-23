@@ -46,6 +46,14 @@
                              Storyboard.TargetProperty="Opacity" />
         </Storyboard>
 
+        <Storyboard x:Name="FadeInPauseButtonAnimation">
+            <DoubleAnimation From="0" To="1"
+                             Duration="0:0:0.7"
+                             BeginTime="0:0:0.0"
+                             Storyboard.TargetName="pauseButton"
+                             Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+
         <Storyboard x:Name="FadeOutBackgroundTimer">
             <DoubleAnimation To="0"
                              Duration="0:0:0.8"
@@ -173,6 +181,37 @@
                                  AutomaticallyStart="False" />
             </interactivity:Interaction.Behaviors>
         </Grid>
+
+        <Button x:Name="pauseButton" 
+                HorizontalAlignment="Right"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Bottom"
+                Margin="10"
+                Visibility="Collapsed"
+                Opacity="0"
+                FontFamily="{StaticResource SilkscreenFont}" 
+                FontSize="20"
+                Foreground="{ThemeResource TinyTimerAccentColorBrush}" 
+                Background="Transparent" 
+                Click="PauseButton_Click">
+            <Button.Content>
+                <Grid>
+                    <BitmapIcon x:Name="pauseButtonIcon" 
+                                Visibility="Visible" 
+                                UriSource="/Assets/pause-icon.png" 
+                                Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                                Height="19"  />
+                    <BitmapIcon x:Name="playButtonIcon" 
+                                Visibility="Collapsed" 
+                                UriSource="/Assets/play-icon.png" 
+                                Foreground="{ThemeResource TinyTimerAccentColorBrush}"
+                                Height="19"  />
+                </Grid>
+            </Button.Content>
+        </Button>
+
+
+
 
         <Grid x:Name="doneGrid" 
               HorizontalAlignment="Center" 

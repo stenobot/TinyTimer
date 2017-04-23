@@ -6,8 +6,6 @@ using Windows.UI.Xaml.Navigation;
 using TinyTimer.DataModel;
 using System.Threading.Tasks;
 using Windows.UI.Core;
-using Windows.Storage;
-
 
 
 namespace TinyTimer.Pages
@@ -155,6 +153,9 @@ namespace TinyTimer.Pages
                     }
                     
                     timerCanStart = true;
+
+                    pauseButton.Visibility = Visibility.Visible;
+                    FadeInPauseButtonAnimation.Begin();
                 }
             }
 
@@ -277,17 +278,27 @@ namespace TinyTimer.Pages
             Frame.Navigate(typeof(StartPage), new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
 
-        //public override void PageVisibilityChanged(object sender, VisibilityChangedEventArgs e)
-        //{
-        //    if (!e.Visible)
-        //    {
-        //        // when app window is minimized and a video is playing, pause the player
-           
-        //    }
-        //    else
-        //    {
-         
-        //    }
-        //}
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (pauseButtonIcon.Visibility == Visibility.Visible)
+            {
+                // pause and temporarily stop the timer
+                timer.Stop();
+                
+                pauseButtonIcon.Visibility = Visibility.Collapsed;
+                playButtonIcon.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                // need to reset current time
+                currTime = DateTime.Now;
+
+                // resume the timer
+                timer.Start();
+                
+                pauseButtonIcon.Visibility = Visibility.Visible;
+                playButtonIcon.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

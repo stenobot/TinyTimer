@@ -138,6 +138,8 @@
     <None Include="TinyTimer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\pause-icon.png" />
+    <Content Include="Assets\play-icon.png" />
     <Content Include="Assets\settings-icon.png" />
     <Content Include="Assets\Sounds\countdown01-1.wav" />
     <Content Include="Assets\Sounds\countdown01-2.wav" />
