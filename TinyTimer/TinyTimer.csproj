@@ -111,7 +111,6 @@
     <Compile Include="DataModel\Settings.cs" />
     <Compile Include="DataModel\CountdownTime.cs" />
     <Compile Include="DataModel\SoundPlayer.cs" />
-    <Compile Include="DataModel\TimerModeEnums.cs" />
     <Compile Include="DataModel\UserTimes.cs" />
     <Compile Include="Pages\SetCustomCountdownPage.xaml.cs">
       <DependentUpon>SetCustomCountdownPage.xaml</DependentUpon>

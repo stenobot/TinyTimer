@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using TinyTimer.DataModel;
@@ -29,13 +28,7 @@ namespace TinyTimer.Pages
         private DateTime currTime;
         private DateTime prevTime;
 
-        private TimerModeEnums timerMode;
-        
-      //  private int clockMode;
-
         private DispatcherTimer timer;
-
-
 
         public TimerPage()
         {
@@ -43,8 +36,8 @@ namespace TinyTimer.Pages
 
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
-
-            TrySetTimerModeFromSave();
+            if (Settings.Current.ShowSeconds == false)
+                VisualStateManager.GoToState(this, "MinutesOnly", true);
 
             outroLoopCount = 10;
 
@@ -52,9 +45,6 @@ namespace TinyTimer.Pages
             {
                 SetRandomColor();
             }
-
-            // load event for changing timer mode
-            mainTimerGrid.Tapped += MainTimerGrid_Tapped;
         }
 
 
@@ -65,59 +55,22 @@ namespace TinyTimer.Pages
             clockColonText.Foreground = brush;
             clockMinuteText.Foreground = brush;
             clockSecondText.Foreground = brush;
-            clockTwoMinuteText.Foreground = brush;
-            clockTwoSecondText.Foreground = brush;
             backgroundRectangle.Fill = brush;
             doneButton.Foreground = brush;
         }
 
-        private void TrySetTimerModeFromSave()
-        {
-            if (ApplicationData.Current.LocalSettings.Values["timerMode"] != null)
-            {
-                // save data is an int, so we need to cast save value to int
-                int enumVal = (int)ApplicationData.Current.LocalSettings.Values["timerMode"];
-                timerMode = (TimerModeEnums)enumVal;
-            }
-            else
-            {
-                // set timer mode default value and save as an int value
-                timerMode = TimerModeEnums.MinutesAndSeconds;
-                ApplicationData.Current.LocalSettings.Values["timerMode"] = timerMode.GetHashCode();
-            }
-        }
-
-        private void MainTimerGrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (timerMode == TimerModeEnums.MinutesAndSeconds)
-                timerMode = TimerModeEnums.MinutesOnly;
-            else if (timerMode == TimerModeEnums.MinutesOnly)
-                timerMode = TimerModeEnums.SecondsOnly;
-            else if (timerMode == TimerModeEnums.SecondsOnly)
-                timerMode = TimerModeEnums.MinutesAndSeconds;
-
-            // saved changed timer mode to local settings as an int value
-            ApplicationData.Current.LocalSettings.Values["timerMode"] = timerMode.GetHashCode();
-
-            ChangeTimerModeVisuals();
-        }
-
         private void StartTimer(CountdownTime time)
         {
-            // special case for minutes only and seconds only mode
-            if (timerMode == TimerModeEnums.MinutesOnly)
-                clockTwoMinuteText.Opacity = 1;
-            else if (timerMode == TimerModeEnums.SecondsOnly)
-                clockTwoSecondText.Opacity = 1;
-
             // get the timer ready
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+
             timer.Tick += Timer_Tick;
 
             // time stamps to keep our pseudo clock honest
             currTime = DateTime.Now; 
- 
 
             // start the timer
             timer.Start();
@@ -125,8 +78,6 @@ namespace TinyTimer.Pages
             // set clock strings to starting values
             clockMinuteText.Text = ((time.Minutes < 10) ? "0" : "") + time.Minutes.ToString();
             clockSecondText.Text = ((time.Seconds < 10) ? "0" : "") + time.Seconds.ToString();
-            clockTwoMinuteText.Text = time.Minutes.ToString();
-            clockTwoSecondText.Text = ":" + ((time.Seconds < 10) ? "0" : "") + time.Seconds.ToString();
         }
 
         private void Timer_Tick(object sender, object e)
@@ -182,10 +133,7 @@ namespace TinyTimer.Pages
 
                     introCount++;
 
-                    if (timerMode == TimerModeEnums.MinutesAndSeconds)
-                        FadeOutClockAnimation.Begin();
-                    else if (timerMode == TimerModeEnums.MinutesOnly || timerMode == TimerModeEnums.SecondsOnly)
-                        FadeOutClockTwoAnimation.Begin();
+                    FadeOutClockAnimation.Begin();
 
                     return;
                 }
@@ -194,16 +142,19 @@ namespace TinyTimer.Pages
                     if (Settings.Current.SoundModeIndex > 0)
                         soundPlayer.PlaySound(((Settings.Current.SoundModeIndex - 1) * 2) + 1);
 
+                    clockGrid.Opacity = 1;
                     FadeOutBkgRectAnimation.Begin();
                     RotateBkgRect.Value += 150;
                     ScaleBkgRect.ScaleX += 1.5;
                     ScaleBkgRect.ScaleY += 1.5;
-                    OffsetClockTwo.StartAnimation();
-                    ScaleClockTwo.StartAnimation();
+
+                    if (Settings.Current.PlacementModeIndex == 1)
+                    {
+                        OffsetClock.StartAnimation();
+                        ScaleClock.StartAnimation();
+                    }
+                    
                     timerCanStart = true;
-
-                    ChangeTimerModeVisuals();
-
                 }
             }
 
@@ -273,14 +224,10 @@ namespace TinyTimer.Pages
 
             clockMinuteText.Text = ((countdownCurrTime.Minutes < 10) ? "0" : "") + countdownCurrTime.Minutes.ToString();
             clockSecondText.Text = ((countdownCurrTime.Seconds < 10) ? "0" : "") + countdownCurrTime.Seconds.ToString();
-            clockTwoMinuteText.Text = countdownCurrTime.Minutes.ToString();
-            clockTwoSecondText.Text = ":" + ((countdownCurrTime.Seconds < 10) ? "0" : "") + countdownCurrTime.Seconds.ToString();
         }
 
         private void EndTimer()
         {
-            mainTimerGrid.Tapped -= MainTimerGrid_Tapped;
-
             timerFinished = true;
             FadeInBkgRectAnimation.Begin();
             FadeOutBackgroundTimer.Begin();
@@ -289,10 +236,7 @@ namespace TinyTimer.Pages
             RotateBkgRect.Duration = 3000;
             RotateBkgRect.Value = -100;
 
-            if (timerMode == TimerModeEnums.MinutesAndSeconds)
-                FadeOutClockAnimation.Begin();
-            else if (timerMode == TimerModeEnums.MinutesOnly || timerMode == TimerModeEnums.SecondsOnly)
-                FadeOutClockTwoAnimation.Begin();
+            FadeOutClockAnimation.Begin();
 
             doneGrid.Visibility = Visibility.Visible;
             FadeInDoneButton.Begin();
@@ -323,31 +267,7 @@ namespace TinyTimer.Pages
         }
 
 
-
-        private void ChangeTimerModeVisuals()
-        {
-            if (timerMode == TimerModeEnums.MinutesAndSeconds)
-            {
-                clockGrid.Opacity = 1;
-                clockTwoGrid.Opacity = 0;
-            }
-            else if (timerMode == TimerModeEnums.MinutesOnly)
-            {
-                clockGrid.Opacity = 0;
-                clockTwoGrid.Opacity = 1;
-                clockTwoMinuteText.Opacity = 1;
-                clockTwoSecondText.Opacity = 0;
-            }
-            else if (timerMode == TimerModeEnums.SecondsOnly)
-            {
-                clockGrid.Opacity = 0;
-                clockTwoGrid.Opacity = 1;
-                clockTwoMinuteText.Opacity = 0;
-                clockTwoSecondText.Opacity = 1;
-            }
-        }
-
-        private async void doneButton_Click(object sender, RoutedEventArgs e)
+        private async void DoneButton_Click(object sender, RoutedEventArgs e)
         {
             doneGrid.Opacity = 0;
             ScaleBkgRect.ScaleX = 0.1;

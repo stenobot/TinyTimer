@@ -25,6 +25,7 @@ namespace TinyTimer.Pages
             SetSecondsMode();
             SetColorMode();
             SetSoundMode();
+            SetPlacementMode();
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -73,6 +74,10 @@ namespace TinyTimer.Pages
             soundModeComboBox.SelectedIndex = Settings.Current.SoundModeIndex;
         }
 
+        private void SetPlacementMode()
+        {
+            placementModeComboBox.SelectedIndex = Settings.Current.PlacementModeIndex;
+        }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -98,6 +103,10 @@ namespace TinyTimer.Pages
                 Settings.Current.SoundModeIndex = box.SelectedIndex;
                 Settings.Current.SaveSoundMode();
                 PlayCurrentSound(box.SelectedIndex);
+            } else if (box.Name == "placementModeComboBox")
+            {
+                Settings.Current.PlacementModeIndex = box.SelectedIndex;
+                Settings.Current.SavePlacementMode();
             }
         }
 

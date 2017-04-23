@@ -22,13 +22,25 @@
 
         <Grid x:Name="timerBackgroundGrid" 
               Opacity="0.4" />
-        
+
         <ScrollViewer VerticalScrollBarVisibility="Auto">
 
 
             <StackPanel HorizontalAlignment="Center"
                         MinWidth="175"
                         VerticalAlignment="Center">
+
+                <CheckBox x:Name="showSecondsCheckBox" 
+                          Checked="ShowSecondsCheckBox_Checked"
+                          Unchecked="ShowSecondsCheckBox_Checked"
+                          Margin="0,8,0,0">
+                    <CheckBox.Content>
+                        <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
+                               Text="Show seconds" 
+                               FontSize="13" 
+                               Margin="0,4,0,0" />
+                    </CheckBox.Content>
+                </CheckBox>
 
                 <ComboBox x:Name="backgroundModeComboBox" 
                           HorizontalAlignment="Left" 
@@ -150,18 +162,31 @@
                     </ComboBox.Items>
                 </ComboBox>
 
-
-                <CheckBox x:Name="showSecondsCheckBox" 
-                          Checked="ShowSecondsCheckBox_Checked"
-                          Unchecked="ShowSecondsCheckBox_Checked"
-                          Margin="0,6,0,0">
-                    <CheckBox.Content>
+                <ComboBox x:Name="placementModeComboBox" 
+                          HorizontalAlignment="Left" 
+                          MinWidth="120" 
+                          Margin="0,11,0,0"
+                          SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBox.Header>
                         <TextBlock FontFamily="{StaticResource SilkscreenFont}" 
-                               Text="Show seconds" 
-                               FontSize="13" 
-                               Margin="0,4,0,0" />
-                    </CheckBox.Content>
-                </CheckBox>
+                                   Text="Placement:" 
+                                   FontSize="13" />
+                    </ComboBox.Header>
+                    <ComboBox.Items>
+                        <ComboBoxItem>
+                            <TextBlock Text="Center" 
+                                       FontSize="13" 
+                                       FontFamily="{StaticResource SilkscreenFont}"
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="Top right" 
+                                       FontFamily="{StaticResource SilkscreenFont}"                               
+                                       FontSize="13" 
+                                       Margin="0,3,0,0" />
+                        </ComboBoxItem>
+                    </ComboBox.Items>
+                </ComboBox>
 
                 <TextBlock FontFamily="{StaticResource SilkscreenFont}"                               
                            FontSize="12" Margin="0,11,0,5"
@@ -171,10 +196,7 @@
                            Margin="0,0,0,11"
                            Text="An app by Stenobot." />
 
-
             </StackPanel>
-
         </ScrollViewer>
-
     </Grid>
 </Page>

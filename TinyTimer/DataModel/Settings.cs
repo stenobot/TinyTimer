@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage;
+﻿using Windows.Storage;
 using Windows.UI;
 
 namespace TinyTimer.DataModel
@@ -40,6 +35,8 @@ namespace TinyTimer.DataModel
 
         public int SoundModeIndex { get; set; }
 
+        public int PlacementModeIndex { get; set; }
+
         public Settings() { }
 
         public void Init()
@@ -48,6 +45,7 @@ namespace TinyTimer.DataModel
             TrySetSecondsModeFromSave();
             TrySetColorModeFromSave();
             TrySetSoundModeFromSave();
+            TrySetPlacementModeFromSave();
 
             randomColorGenerator = new RandomColorGenerator();
 
@@ -80,6 +78,11 @@ namespace TinyTimer.DataModel
         public void SaveSoundMode()
         {
             ApplicationData.Current.LocalSettings.Values["soundMode"] = SoundModeIndex;
+        }
+
+        public void SavePlacementMode()
+        {
+            ApplicationData.Current.LocalSettings.Values["placementMode"] = PlacementModeIndex;
         }
 
         private void TrySetBackgroundModeFromSave()
@@ -131,6 +134,19 @@ namespace TinyTimer.DataModel
             {
                 SoundModeIndex = 3;
                 ApplicationData.Current.LocalSettings.Values["soundMode"] = 4;
+            }
+        }
+
+        private void TrySetPlacementModeFromSave()
+        {
+            if (ApplicationData.Current.LocalSettings.Values["placementMode"] != null)
+            {
+                PlacementModeIndex = (int)ApplicationData.Current.LocalSettings.Values["placementMode"];
+            }
+            else
+            {
+                PlacementModeIndex = 0;
+                ApplicationData.Current.LocalSettings.Values["placementMode"] = 0;
             }
         }
     }
