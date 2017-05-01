@@ -69,10 +69,14 @@ namespace TinyTimer.Pages
         private void PopulatePreviousButtons()
         {
             // set content of previous button
-            previousCountdownButton.Content = userTimes.PreviousCountdownTime.Minutes;
+            previousCountdownButton.Content = 
+                ((userTimes.PreviousCountdownTime.Minutes == 0 && Settings.Current.ShowSeconds) ? "0" : "") + 
+                userTimes.PreviousCountdownTime.Minutes;
 
             // set content of next previous button 
-            nextPreviousCountdownButton.Content = userTimes.NextPreviousCountdownTime.Minutes;
+            nextPreviousCountdownButton.Content = 
+                ((userTimes.NextPreviousCountdownTime.Minutes == 0 && Settings.Current.ShowSeconds) ? "0" : "") +
+                userTimes.NextPreviousCountdownTime.Minutes;
 
             if (Settings.Current.ShowSeconds)
             {

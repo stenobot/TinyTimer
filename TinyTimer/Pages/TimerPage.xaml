@@ -189,7 +189,6 @@
                 Margin="10"
                 Visibility="Collapsed"
                 Opacity="0"
-                FontFamily="{StaticResource SilkscreenFont}" 
                 FontSize="20"
                 Foreground="{ThemeResource TinyTimerAccentColorBrush}" 
                 Background="Transparent" 

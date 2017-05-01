@@ -22,6 +22,12 @@ namespace TinyTimer.Pages
         private bool outroSmall;
         private int outroLoopCount;
         private double percentageInterval;
+        private bool minutesOnly;
+
+        private FontFamily verminFont = (FontFamily)Application.Current.Resources["VerminFont"];
+        private FontFamily zeldaFont = (FontFamily)Application.Current.Resources["ZeldaFont"];
+        private FontFamily silkscreenFont = (FontFamily)Application.Current.Resources["SilkscreenFont"];
+        private FontFamily digiffitiFont = (FontFamily)Application.Current.Resources["DigiffitiFont"];
 
         private DateTime currTime;
         private DateTime prevTime;
@@ -35,6 +41,9 @@ namespace TinyTimer.Pages
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
             if (Settings.Current.ShowSeconds == false)
+                minutesOnly = true;
+
+            if (minutesOnly)
                 VisualStateManager.GoToState(this, "MinutesOnly", true);
 
             outroLoopCount = 10;
@@ -74,7 +83,7 @@ namespace TinyTimer.Pages
             timer.Start();
 
             // set clock strings to starting values
-            clockMinuteText.Text = ((time.Minutes < 10) ? "0" : "") + time.Minutes.ToString();
+            clockMinuteText.Text = ((time.Minutes < 10 && !minutesOnly) ? "0" : "") + time.Minutes.ToString();
             clockSecondText.Text = ((time.Seconds < 10) ? "0" : "") + time.Seconds.ToString();
         }
 
@@ -223,7 +232,8 @@ namespace TinyTimer.Pages
                 timeBackground.TimeElapsedPercentage += percentageInterval;
             }
 
-            clockMinuteText.Text = ((countdownCurrTime.Minutes < 10) ? "0" : "") + countdownCurrTime.Minutes.ToString();
+            // update the clock
+            clockMinuteText.Text = ((countdownCurrTime.Minutes < 10 && !minutesOnly) ? "0" : "") + countdownCurrTime.Minutes.ToString();
             clockSecondText.Text = ((countdownCurrTime.Seconds < 10) ? "0" : "") + countdownCurrTime.Seconds.ToString();
         }
 
