@@ -25,8 +25,8 @@ namespace TinyTimer.Pages
         private bool minutesOnly;
 
         private FontFamily verminFont = (FontFamily)Application.Current.Resources["VerminFont"];
-        private FontFamily zeldaFont = (FontFamily)Application.Current.Resources["ZeldaFont"];
         private FontFamily silkscreenFont = (FontFamily)Application.Current.Resources["SilkscreenFont"];
+        private FontFamily zeldaFont = (FontFamily)Application.Current.Resources["ZeldaFont"];
         private FontFamily digiffitiFont = (FontFamily)Application.Current.Resources["DigiffitiFont"];
 
         private DateTime currTime;
@@ -46,6 +46,23 @@ namespace TinyTimer.Pages
             if (minutesOnly)
                 VisualStateManager.GoToState(this, "MinutesOnly", true);
 
+            switch (Settings.Current.FontModeIndex)
+            {
+                case 0:
+                default:
+                    SetClockFont(verminFont, 48);
+                    break;
+                case 1:
+                    SetClockFont(silkscreenFont, 38);
+                    break;
+                case 2:
+                    SetClockFont(zeldaFont, 38);
+                    break;
+                case 3:
+                    SetClockFont(digiffitiFont, 52);
+                    break;
+            }
+
             outroLoopCount = 10;
 
             if (Settings.Current.ColorModeIndex == 1)
@@ -54,6 +71,16 @@ namespace TinyTimer.Pages
             }
         }
 
+        private void SetClockFont(FontFamily font, double size)
+        {
+            clockMinuteText.FontFamily = font;
+            clockSecondText.FontFamily = font;
+            clockColonText.FontFamily = font;
+
+            clockMinuteText.FontSize = size;
+            clockSecondText.FontSize = size;
+            clockColonText.FontSize = size;
+        }
 
         private void SetRandomColor()
         {

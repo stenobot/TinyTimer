@@ -37,6 +37,8 @@ namespace TinyTimer.DataModel
 
         public int PlacementModeIndex { get; set; }
 
+        public int FontModeIndex { get; set; }
+
         public Settings() { }
 
         public void Init()
@@ -46,6 +48,7 @@ namespace TinyTimer.DataModel
             TrySetColorModeFromSave();
             TrySetSoundModeFromSave();
             TrySetPlacementModeFromSave();
+            TrySetFontModeFromSave();
 
             randomColorGenerator = new RandomColorGenerator();
 
@@ -83,6 +86,11 @@ namespace TinyTimer.DataModel
         public void SavePlacementMode()
         {
             ApplicationData.Current.LocalSettings.Values["placementMode"] = PlacementModeIndex;
+        }
+
+        public void SaveFontMode()
+        {
+            ApplicationData.Current.LocalSettings.Values["fontMode"] = FontModeIndex;
         }
 
         private void TrySetBackgroundModeFromSave()
@@ -147,6 +155,19 @@ namespace TinyTimer.DataModel
             {
                 PlacementModeIndex = 0;
                 ApplicationData.Current.LocalSettings.Values["placementMode"] = 0;
+            }
+        }
+
+        private void TrySetFontModeFromSave()
+        {
+            if (ApplicationData.Current.LocalSettings.Values["fontMode"] != null)
+            {
+                FontModeIndex = (int)ApplicationData.Current.LocalSettings.Values["fontMode"];
+            }
+            else
+            {
+                FontModeIndex = 0;
+                ApplicationData.Current.LocalSettings.Values["fontMode"] = 0;
             }
         }
     }

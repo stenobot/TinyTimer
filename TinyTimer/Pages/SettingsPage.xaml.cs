@@ -21,11 +21,21 @@ namespace TinyTimer.Pages
 
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
 
+            // set app version
+            Windows.ApplicationModel.Package pkg = Windows.ApplicationModel.Package.Current;
+            Windows.ApplicationModel.PackageVersion version = pkg.Id.Version;
+            versionNumber.Text = "version: " + 
+                version.Major.ToString() + "." + 
+                version.Minor.ToString() + "." + 
+                version.Build.ToString() + "." + 
+                version.Revision.ToString();
+
             SetBackgroundMode();
             SetSecondsMode();
             SetColorMode();
             SetSoundMode();
             SetPlacementMode();
+            SetFontMode();
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -79,6 +89,11 @@ namespace TinyTimer.Pages
             placementModeComboBox.SelectedIndex = Settings.Current.PlacementModeIndex;
         }
 
+        private void SetFontMode()
+        {
+            fontModeComboBox.SelectedIndex = Settings.Current.FontModeIndex;
+        }
+
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox box = sender as ComboBox;
@@ -107,6 +122,10 @@ namespace TinyTimer.Pages
             {
                 Settings.Current.PlacementModeIndex = box.SelectedIndex;
                 Settings.Current.SavePlacementMode();
+            } else if (box.Name == "fontModeComboBox")
+            {
+                Settings.Current.FontModeIndex = box.SelectedIndex;
+                Settings.Current.SaveFontMode();
             }
         }
 
