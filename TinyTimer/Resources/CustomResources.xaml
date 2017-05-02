@@ -43,6 +43,7 @@
     <FontFamily x:Key="VerminFont">/Assets/Fonts/vermin_vibes_1989.ttf#Vermin Vibes 1989</FontFamily>
     <FontFamily x:Key="SilkscreenFont">/Assets/Fonts/slkscr.ttf#Silkscreen</FontFamily>
     <FontFamily x:Key="DigiffitiFont">/Assets/Fonts/digiffiti.ttf#Digiffiti</FontFamily>
+    <FontFamily x:Key="vFiveXtenderFont">/Assets/Fonts/V5Xtende.ttf#V5 Xtender</FontFamily>
 
 
 

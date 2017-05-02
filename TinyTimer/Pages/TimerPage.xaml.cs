@@ -26,7 +26,7 @@ namespace TinyTimer.Pages
 
         private FontFamily verminFont = (FontFamily)Application.Current.Resources["VerminFont"];
         private FontFamily silkscreenFont = (FontFamily)Application.Current.Resources["SilkscreenFont"];
-        private FontFamily zeldaFont = (FontFamily)Application.Current.Resources["ZeldaFont"];
+        private FontFamily vFiveFont = (FontFamily)Application.Current.Resources["vFiveXtenderFont"];
         private FontFamily digiffitiFont = (FontFamily)Application.Current.Resources["DigiffitiFont"];
 
         private DateTime currTime;
@@ -56,7 +56,7 @@ namespace TinyTimer.Pages
                     SetClockFont(silkscreenFont, 38);
                     break;
                 case 2:
-                    SetClockFont(zeldaFont, 38);
+                    SetClockFont(vFiveFont, 36);
                     break;
                 case 3:
                     SetClockFont(digiffitiFont, 52);

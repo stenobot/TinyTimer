@@ -97,6 +97,8 @@
     <Content Include="Assets\Fonts\digiffiti.ttf" />
     <Content Include="Assets\Fonts\slkscr.ttf" />
     <Content Include="Assets\Fonts\vermin_vibes_1989.ttf" />
+    <Content Include="Assets\Fonts\04B_30__.TTF" />
+    <Content Include="Assets\Fonts\V5Xtende.ttf" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>

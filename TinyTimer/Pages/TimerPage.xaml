@@ -167,7 +167,7 @@
 
             <interactivity:Interaction.Behaviors>
                 <behaviors:Offset x:Name="OffsetClock" 
-                                  OffsetX="70"
+                                  OffsetX="68"
                                   OffsetY="-90"
                                   Duration="800" 
                                   AutomaticallyStart="False" />

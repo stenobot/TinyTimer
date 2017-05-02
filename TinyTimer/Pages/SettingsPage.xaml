@@ -195,8 +195,8 @@
                         </ComboBoxItem>
                         <ComboBoxItem>
                             <TextBlock Text="12:34" 
-                                       FontFamily="{StaticResource ZeldaFont}"                               
-                                       FontSize="22" 
+                                       FontFamily="{StaticResource vFiveXtenderFont}"                               
+                                       FontSize="20" 
                                        Margin="0,3,0,0" />
                         </ComboBoxItem>
                         <ComboBoxItem>
